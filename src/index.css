@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora", "Inter", sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --color-gold-50: #fbf7e8;
+  --color-gold-100: #f6ecC8;
+  --color-gold-200: #edd98f;
+  --color-gold-300: #e3c25c;
+  --color-gold-400: #d9ad3d;
+  --color-gold-500: #d4af37;
+  --color-gold-600: #b8941f;
+  --color-gold-700: #8a6f16;
+  --color-ink-900: #0a0a0a;
+  --color-ink-800: #131313;
+  --color-ink-700: #1d1d1d;
+  --color-navy-900: #0b1e42;
+  --color-navy-800: #0e2a5e;
+  --color-navy-700: #143a82;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #fafaf8;
+  color: #111;
+}
+
+.font-display { font-family: "Sora", "Inter", sans-serif; }
+.font-serifd { font-family: "Playfair Display", Georgia, serif; }
+
+.gold-text {
+  background: linear-gradient(100deg, #f6e27a 0%, #d4af37 35%, #b8860b 55%, #f6e27a 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.gold-bg {
+  background: linear-gradient(135deg, #f6e27a 0%, #d4af37 40%, #a67c00 100%);
+}
+.gold-border { border-color: rgba(212,175,55,.45); }
+
+.card-shadow { box-shadow: 0 20px 50px -18px rgba(0,0,0,.28); }
+.card-shadow-sm { box-shadow: 0 10px 30px -12px rgba(0,0,0,.22); }
+.navy-shadow { box-shadow: 0 20px 55px -18px rgba(14,42,94,.45); }
+
+.hero-grid {
+  background-image: linear-gradient(rgba(212,175,55,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,175,55,.07) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 20%, black 40%, transparent 100%);
+}
+.hero-grid-blue {
+  background-image: linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 10%, black 40%, transparent 100%);
+}
+
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes seal-rotate { to { transform: rotate(360deg); } }
+.seal-spin { animation: seal-rotate 22s linear infinite; transform-origin: center; }
+@keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,.55);} 70% { box-shadow: 0 0 0 16px rgba(37,211,102,0);} 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0);} }
+.anim-rise { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+.anim-float { animation: floaty 5s ease-in-out infinite; }
+.anim-marquee { animation: marquee 28s linear infinite; }
+.wa-pulse { animation: pulse-ring 2.2s infinite; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.tick { font-variant-numeric: tabular-nums; }
+::selection { background: #d4af37; color: #0a0a0a; }
+
+/* ─── Premium funcional · fluxo ─────────────────────────── */
+.premium-card { transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s; }
+.premium-card:hover { transform: translateY(-4px); }
+.flow-line { position: relative; }
+@media (min-width: 640px) {
+  .flow-line::after {
+    content: ""; position: absolute; top: 50%; right: -14px; width: 14px; height: 2px;
+    background: linear-gradient(90deg, #d4af37, transparent);
+  }
+  .flow-line:last-child::after { display: none; }
+}
+
+/* Acessibilidade: foco visível + movimento reduzido */
+:focus-visible { outline: 2px solid #b8941f; outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  .anim-rise, .anim-float, .anim-marquee, .seal-spin, .wa-pulse { animation: none !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* Impressão CV-MAKER: só o CV sai no papel/PDF */
+@media print {
+  body * { visibility: hidden !important; }
+  .print-area, .print-area * { visibility: visible !important; }
+  .print-area {
+    position: absolute !important; inset: 0 auto auto 0 !important;
+    width: 100% !important; border-radius: 0 !important;
+    box-shadow: none !important; margin: 0 !important;
+  }
+  @page { margin: 12mm; }
+}

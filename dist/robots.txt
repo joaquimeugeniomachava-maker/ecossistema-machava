@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://moz-sistafe.vercel.app/sitemap.xml

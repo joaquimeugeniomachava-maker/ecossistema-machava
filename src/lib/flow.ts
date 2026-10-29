@@ -6,7 +6,7 @@ import { txt, textoOu, sanitizarMensagem } from "./safe";
 export { txt, textoOu, sanitizarMensagem };
 export { nomeValido, telefoneValido, matriculaValida, formatarMatricula } from "./safe-extra";
 
-export const WA_NUMBER = "258844898420";
+export const WA_NUMBER = "258870488008";
 
 export function getCampaign(): string {
   try {
